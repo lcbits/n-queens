@@ -16,7 +16,26 @@
 
 
 window.findNRooksSolution = function(n) {
-  var solution = undefined; //fixme
+    var solutionCount = 1;
+    var solutions = [];
+
+    var recurseRookSolution = function(roundsToGo, comboSoFar){
+      comboSoFar = comboSoFar || []
+
+      if(roundsToGo === 0){
+        solutions.push(comboSoFar);
+        solutionCount++;
+        return;
+      }
+      for(var i=0; i<this.rows().length; i++;){
+        var currentRow = this.rows()[i];
+        recurseRookSolution(roundsToGo-1, comboSoFar.concat(currentRow));
+      }
+    }
+
+    recurseRookSolution(n);
+    return solutions;
+}
 
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
   return solution;
